@@ -44,7 +44,7 @@ def check_user():
         print('')
         print(f"Your current account balance is: {user_one['account_balance']}.")
         print('')
-        #print(f"Your connected bank {user_one['connected_banks'][0]} has an available balance of: {user_one['connected_banks'][0][1]}.)
+        print(f"Your connected bank and available funds are: {user_one['connected_banks']}.")
 
 check_user()
 
@@ -60,6 +60,19 @@ def transfer_money():
         
 transfer_money()
 
+currently_available = user_one["account_balance"]
+def amount_to_transfer():
+    transfer_amount_available = False
+    while transfer_amount_available == False:
+        ask_user = int(input("How much money would you like to transfer?"))
+        if ask_user <= currently_available:
+            print("Transfering the requested amount...")
+            transfer_amount_available = True
+        else:
+            print("Insufficient funds.  Please enter a smaller amount to transfer.")
+            transfer_amount_available = False
+
+amount_to_transfer()
 
         
 
