@@ -60,21 +60,44 @@ def transfer_money():
         
 transfer_money()
 
-currently_available = user_one["account_balance"]
+
 def amount_to_transfer():
-    transfer_amount_available = False
+    currently_available = user_one["account_balance"]
+    transfer_amount_available = False    
     while transfer_amount_available == False:
         ask_user = int(input("How much money would you like to transfer?"))
         if ask_user <= currently_available:
             print("Transfering the requested amount...")
+            user_one["account_balance"] -= ask_user
+            user_two["account_balance"] += ask_user
             transfer_amount_available = True
+            print('The new account balance of ' + user_one['full_name'] + " " + "is" + " " + str(user_one["account_balance"]))
+            print("The new account balance of " + user_two['full_name'] + " " + "is" + " " + str(user_two["account_balance"]))
         else:
             print("Insufficient funds.  Please enter a smaller amount to transfer.")
-            transfer_amount_available = False
-
+  
+    
 amount_to_transfer()
 
+def repeat_transfer():
+    repeat_transfer_process = False 
+    user_transfer = input("Would you like to make another transfer? (Y/N) ")
+    while repeat_transfer_process == False:
+        if user_transfer == "Y":
+                print("Beginning next transaction...")
+                repeat_transfer_process = True
+                amount_to_transfer()
+                print("All transactions are completed.  Have a nice day!")
+        else:
+            print("All transactions are completed. Your final account balance is" + " " + str(user_one['account_balance']) + " " + "Have a nice day!")
+            break
         
+repeat_transfer()
+
+
+
+
+
 
 
 
